@@ -1,8 +1,8 @@
-# Thrive11 Android App
+Thrive11 Android App
 
 This Android Studio project wraps the supplied Thrive11 HTML application in a native Android WebView.
 
-## Included Android behaviour
+#Included Android behaviour
 
 - JavaScript, DOM storage, localStorage and IndexedDB are enabled.
 - Student and tutor accounts remain saved on the phone.
@@ -12,33 +12,33 @@ This Android Studio project wraps the supplied Thrive11 HTML application in a na
 - The Android back button navigates within the app before closing it.
 - The unrestricted Student/Tutor role-switch button is hidden; users sign into their own registered role.
 
-## Fastest way to produce the APK with GitHub
+#Fastest way to produce the APK with GitHub
 
 1. Create a new private GitHub repository.
-2. Upload **the contents of this folder** to the repository.
-3. Open the repository's **Actions** tab.
-4. Select **Build Thrive11 APK** and choose **Run workflow**.
+2. Upload the contents of this folder to the repository.
+3. Open the repository's Actions tab.
+4. Select Build Thrive11 APK and choose Run workflow.
 5. When the workflow finishes, open it and download the `Thrive11-Android-APK` artifact.
 6. Extract the downloaded artifact. It contains `Thrive11-v1.0-debug.apk`, which can be sent to an Android phone and installed.
 
 The included workflow also runs automatically whenever files are pushed to the `main` branch.
 
-## Build with Android Studio
+#Build with Android Studio
 
 1. Install Android Studio.
-2. Choose **Open** and select this project folder.
+2. Choose Open and select this project folder.
 3. Let Android Studio install Android SDK 35 and sync Gradle.
-4. Choose **Build > Build Bundle(s) / APK(s) > Build APK(s)**.
+4. Choose Build > Build Bundle(s) / APK(s) > Build APK(s).
 5. Find the APK under `app/build/outputs/apk/debug/app-debug.apk`.
 
-## Installation on another Android phone
+#Installation on another Android phone
 
 The recipient opens the APK and permits their Files or browser app to install unknown apps when Android asks. Android may show a warning because the APK is being installed directly rather than through Google Play.
 
-## Important data limitation
+#Important data limitation
 
-This version stores accounts, work, marks, quiz results and uploaded files **only on the device where they were created**. A tutor on one phone and a student on another phone will not see each other's updates. Shared multi-device data requires a backend such as Firebase, Supabase or a custom server.
+This version stores accounts, work, marks, quiz results and uploaded files only on the device where they were created. A tutor on one phone and a student on another phone will not see each other's updates. Shared multi-device data requires a backend such as Firebase, Supabase or a custom server.
 
-## Production release
+#Production release
 
 The workflow produces a debug-signed APK suitable for testing and direct sharing. For public distribution or dependable future updates, create and securely retain your own release signing key, then generate a signed release APK or Android App Bundle in Android Studio.

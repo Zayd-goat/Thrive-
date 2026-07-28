@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Thrive11</string>
+    <string name="choose_file">Choose an answer file</string>
+    <string name="no_file_picker">No compatible file picker was found.</string>
+    <string name="no_app_for_link">No app is available to open this link.</string>
+</resources>
