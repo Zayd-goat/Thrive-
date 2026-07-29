@@ -10,8 +10,17 @@ android {
         applicationId 'za.co.thrive11.app'
         minSdk 24
         targetSdk 35
-        versionCode 1
-        versionName '1.0.0'
+        versionCode 3
+        versionName '1.2.0'
+    }
+
+    signingConfigs {
+        release {
+            storeFile file('thrive11-release.jks')
+            storePassword project.property('THRIVE11_KEYSTORE_PASSWORD')
+            keyAlias 'thrive11'
+            keyPassword project.property('THRIVE11_KEY_PASSWORD')
+        }
     }
 
     buildTypes {
@@ -22,6 +31,7 @@ android {
         release {
             minifyEnabled false
             shrinkResources false
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }

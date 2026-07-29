@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="theme-color" content="#0f172a" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Thrive11 - Grade 11 Math & Science Platform</title>
-<style>
+  
+  <style>
     :root {
       --bg-main: #f8fafc;
       --card-bg: #ffffff;
@@ -901,6 +901,93 @@
       color: var(--primary);
     }
 
+    .onboarding-container {
+      min-height: 100vh;
+      padding: 24px;
+      background:
+        radial-gradient(circle at top left, rgba(99, 102, 241, 0.24), transparent 34%),
+        radial-gradient(circle at bottom right, rgba(14, 165, 233, 0.18), transparent 32%),
+        linear-gradient(135deg, #0f172a, #1e1b4b);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .onboarding-card {
+      width: 100%;
+      max-width: 880px;
+      background: white;
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: 0 25px 60px rgba(2, 6, 23, 0.35);
+    }
+
+    .onboarding-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 18px;
+      margin-bottom: 22px;
+    }
+
+    .onboarding-step {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 10px;
+      border-radius: 9999px;
+      background: #eef2ff;
+      color: #4338ca;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    .onboarding-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .subject-goal-card {
+      border: 1px solid #e2e8f0;
+      border-radius: 16px;
+      padding: 18px;
+      background: #f8fafc;
+    }
+
+    .subject-goal-card h3 {
+      margin: 0 0 4px;
+      font-size: 1rem;
+      font-weight: 800;
+      color: #0f172a;
+    }
+
+    .subject-goal-card p {
+      margin: 0 0 16px;
+      font-size: 0.82rem;
+      color: #64748b;
+    }
+
+    .onboarding-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+
+    .onboarding-note {
+      margin-top: 16px;
+      padding: 12px 14px;
+      border: 1px solid #bfdbfe;
+      background: #eff6ff;
+      color: #1e40af;
+      border-radius: 12px;
+      font-size: 0.84rem;
+      line-height: 1.45;
+    }
+
     .modal-overlay {
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
@@ -987,21 +1074,46 @@
       .sidebar { transform: translateX(-100%); }
       .sidebar.open { transform: translateX(0); }
       .main-wrapper { margin-left: 0; }
-      .main-grid, .cols-2, .cols-3, .cols-4, .goal-panel { grid-template-columns: 1fr; }
+      .main-grid, .cols-2, .cols-3, .cols-4, .goal-panel, .onboarding-grid { grid-template-columns: 1fr; }
+      .onboarding-container { padding: 12px; align-items: flex-start; }
+      .onboarding-card { padding: 20px; margin-top: 12px; }
+      .onboarding-head { flex-direction: column; }
       .mobile-menu-btn { display: block !important; }
     }
 
     .mobile-menu-btn { display: none; background: none; border: none; font-size: 1.4rem; cursor: pointer; }
     .answer-image { max-width: 100%; border-radius: 12px; border: 1px solid #cbd5e1; margin-top: 10px; }
   
-    /* Android package safety: accounts stay in their registered role. */
-    #role-switch-btn { display: none !important; }
-    @media (max-width: 900px) {
-      .auth-container { min-height: 100dvh; }
-      .top-header { padding-top: max(14px, env(safe-area-inset-top)); }
-      .main-body { padding-bottom: max(28px, env(safe-area-inset-bottom)); }
+
+    .student-card-grid { display: grid; gap: 14px; }
+    .student-person-card { border: 1px solid var(--border-color); border-radius: 14px; padding: 16px; background: #f8fafc; }
+    .student-person-head { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+    .student-person-head > div { min-width: 0; flex: 1; }
+    .student-person-head b, .student-person-head small { display: block; }
+    .student-person-head small { color: var(--text-muted); margin-top: 2px; overflow-wrap: anywhere; }
+    .student-mini-metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px; }
+    .student-mini-metrics span { background: white; border: 1px solid var(--border-color); border-radius: 10px; padding: 8px; color: var(--text-muted); font-size: 0.78rem; }
+    .student-mini-metrics b { color: var(--text-main); font-size: 1rem; }
+    .student-check-grid { display: grid; gap: 9px; margin: 9px 0 15px; }
+    .student-check { display: flex; flex-direction: row; align-items: flex-start; gap: 10px; padding: 11px 12px; border: 1px solid var(--border-color); border-radius: 11px; background: #f8fafc; margin: 0; cursor: pointer; }
+    .student-check input { width: 18px; height: 18px; margin-top: 2px; flex: 0 0 auto; }
+    .student-check span { min-width: 0; }
+    .student-check b, .student-check small { display: block; }
+    .student-check small { color: var(--text-muted); font-weight: 500; margin-top: 2px; overflow-wrap: anywhere; }
+    .form-section-label { display: block; color: #334155; font-size: 0.85rem; margin-bottom: 4px; }
+    .one-column-actions { grid-template-columns: 1fr; }
+    .activity-list { display: grid; gap: 12px; }
+    .activity-row { display: flex; gap: 10px; align-items: flex-start; }
+    .activity-row b, .activity-row small { display: block; }
+    .activity-row small { color: var(--text-muted); margin-top: 2px; }
+    .activity-dot { width: 10px; height: 10px; border-radius: 999px; background: var(--primary); margin-top: 5px; flex: 0 0 auto; }
+
+    @media (max-width: 700px) {
+      .assignment-row, .submission-row, .paper-row, .feedback-row { align-items: flex-start; flex-wrap: wrap; }
+      .action-row { margin-left: 46px; width: calc(100% - 46px); flex-wrap: wrap; }
+      .student-mini-metrics { grid-template-columns: 1fr 1fr; }
     }
-  </style>
+</style>
 </head>
 <body>
 
@@ -1076,6 +1188,69 @@
           <button class="btn primary full" type="submit">Create account</button>
         </form>
       </div>
+    </div>
+  </div>
+
+  <!-- First-time Student Setup -->
+  <div id="onboarding-screen" class="onboarding-container hidden">
+    <div class="onboarding-card">
+      <div class="onboarding-head">
+        <div>
+          <span class="onboarding-step">STEP 1 OF 1 • SET YOUR STARTING POINT</span>
+          <h1 style="font-size:1.7rem;font-weight:800;margin:12px 0 6px;color:#0f172a">
+            Welcome, <span id="onboarding-student-name">Student</span> 👋
+          </h1>
+          <p style="margin:0;color:#64748b;max-width:650px;line-height:1.5">
+            Before opening the rest of Thrive11, enter your latest marks and the goals you want to reach.
+            This creates your starting progress plan.
+          </p>
+        </div>
+        <div class="brand-logo" aria-hidden="true">T11</div>
+      </div>
+
+      <form id="onboarding-form">
+        <div class="onboarding-grid">
+          <section class="subject-goal-card">
+            <span class="subject-dot maths" style="margin-bottom:10px">M</span>
+            <h3>Mathematics</h3>
+            <p>Use your most recent report, test average or teacher-provided mark.</p>
+            <label>Current Maths mark (%)
+              <input id="onboarding-maths-current" type="number" min="0" max="100" required placeholder="e.g. 64" />
+            </label>
+            <label>Maths goal (%)
+              <input id="onboarding-maths-target" type="number" min="0" max="100" required placeholder="e.g. 75" />
+            </label>
+          </section>
+
+          <section class="subject-goal-card">
+            <span class="subject-dot science" style="margin-bottom:10px">PS</span>
+            <h3>Physical Sciences</h3>
+            <p>Enter the current result that best represents your performance.</p>
+            <label>Current Physical Sciences mark (%)
+              <input id="onboarding-science-current" type="number" min="0" max="100" required placeholder="e.g. 68" />
+            </label>
+            <label>Physical Sciences goal (%)
+              <input id="onboarding-science-target" type="number" min="0" max="100" required placeholder="e.g. 78" />
+            </label>
+          </section>
+        </div>
+
+        <label style="margin-top:16px">How much of the year's assessment has been completed? (%)
+          <input id="onboarding-completed-percent" type="number" min="0" max="99" required placeholder="e.g. 45" />
+        </label>
+
+        <div id="onboarding-error" class="warning-strip hidden" style="margin-top:12px" aria-live="polite"></div>
+
+        <div class="onboarding-note">
+          <b>Why this is required:</b> Thrive11 uses these values to calculate the average needed on your remaining assessments.
+          You can update the figures later under <b>My progress</b>.
+        </div>
+
+        <div class="onboarding-actions">
+          <button id="onboarding-logout-btn" class="btn ghost" type="button">Sign out</button>
+          <button class="btn primary" type="submit">Save marks and enter Thrive11 →</button>
+        </div>
+      </form>
     </div>
   </div>
 
@@ -1227,6 +1402,8 @@
             passwordHash: "a728c122955698fe",
             role: "student",
             organisation: "Thrive11 Demo School",
+            onboardingComplete: false,
+            onboardingCompletedAt: null,
             createdAt: daysAgoISO(30),
             lastLoginAt: null
           },
@@ -1237,6 +1414,8 @@
             passwordHash: "df3970d905f7364d",
             role: "tutor",
             organisation: "Thrive11 Tutoring",
+            onboardingComplete: true,
+            onboardingCompletedAt: daysAgoISO(30),
             createdAt: daysAgoISO(30),
             lastLoginAt: null
           }
@@ -1297,6 +1476,7 @@
         goals: {
           "Lerato Molefe": { currentMark: 64, targetMark: 75, completedPercent: 45 }
         },
+        subjectGoals: {},
         loginDates: {
           "Lerato Molefe": [daysAgoDate(4), daysAgoDate(3), daysAgoDate(2), daysAgoDate(1)]
         },
@@ -1317,6 +1497,16 @@
 
       const els = {
         loginScreen: document.getElementById("login-screen"),
+        onboardingScreen: document.getElementById("onboarding-screen"),
+        onboardingForm: document.getElementById("onboarding-form"),
+        onboardingStudentName: document.getElementById("onboarding-student-name"),
+        onboardingMathsCurrent: document.getElementById("onboarding-maths-current"),
+        onboardingMathsTarget: document.getElementById("onboarding-maths-target"),
+        onboardingScienceCurrent: document.getElementById("onboarding-science-current"),
+        onboardingScienceTarget: document.getElementById("onboarding-science-target"),
+        onboardingCompletedPercent: document.getElementById("onboarding-completed-percent"),
+        onboardingError: document.getElementById("onboarding-error"),
+        onboardingLogoutBtn: document.getElementById("onboarding-logout-btn"),
         appShell: document.getElementById("app-shell"),
         loginForm: document.getElementById("login-form"),
         signupForm: document.getElementById("signup-form"),
@@ -1386,6 +1576,8 @@
 
         els.loginForm.addEventListener("submit", handleLogin);
         els.signupForm.addEventListener("submit", handleSignup);
+        els.onboardingForm.addEventListener("submit", completeStudentOnboarding);
+        els.onboardingLogoutBtn.addEventListener("click", logout);
         els.logoutBtn.addEventListener("click", logout);
         els.mobileMenu.addEventListener("click", () => document.querySelector(".sidebar").classList.toggle("open"));
         els.modalRoot.addEventListener("click", e => {
@@ -1482,13 +1674,14 @@
           passwordHash: hashPassword(email, password),
           role: selectedRole,
           organisation: els.signupOrganisation.value.trim(),
+          onboardingComplete: selectedRole !== "student",
+          onboardingCompletedAt: selectedRole !== "student" ? new Date().toISOString() : null,
           createdAt: new Date().toISOString(),
           lastLoginAt: new Date().toISOString()
         };
 
         state.accounts.push(account);
         if (account.role === "student") {
-          state.goals[name] = state.goals[name] || { currentMark: 0, targetMark: 70, completedPercent: 0 };
           state.loginDates[name] = state.loginDates[name] || [];
           updateLoginStreak(name);
         }
@@ -1513,12 +1706,20 @@
       }
 
       function enterApp() {
+        const account = state.accounts.find(a => a.id === session.accountId);
         els.loginScreen.classList.add("hidden");
+
+        if (account && studentNeedsOnboarding(account)) {
+          showStudentOnboarding(account);
+          return;
+        }
+
+        els.onboardingScreen.classList.add("hidden");
         els.appShell.classList.remove("hidden");
         els.avatarInitials.textContent = initials(session.name);
         els.roleSwitchBtn.textContent = session.role === "student" ? "🎓 Student account" : "✏️ Tutor account";
-        
-        // Add switch role toggle event
+
+        // Demo helper: switch between the locally stored student and tutor accounts.
         els.roleSwitchBtn.onclick = () => {
           const newRole = session.role === "student" ? "tutor" : "student";
           const match = state.accounts.find(a => a.role === newRole);
@@ -1528,7 +1729,7 @@
             enterApp();
             toast(`Switched to ${match.name} (${match.role})`);
           } else {
-            toast(`No ${newRole} account available. Create one in signup.`);
+            toast(`No ${newRole} account is available on this device.`);
           }
         };
 
@@ -1537,10 +1738,101 @@
         renderCurrentView();
       }
 
+      function studentNeedsOnboarding(account) {
+        return account.role === "student" && account.onboardingComplete !== true;
+      }
+
+      function showStudentOnboarding(account) {
+        els.appShell.classList.add("hidden");
+        els.onboardingScreen.classList.remove("hidden");
+        els.onboardingStudentName.textContent = firstName(account.name);
+        els.onboardingError.textContent = "";
+        els.onboardingError.classList.add("hidden");
+
+        const savedSubjects = state.subjectGoals[account.name];
+        const fallback = state.goals[account.name] || { currentMark: "", targetMark: "", completedPercent: "" };
+        els.onboardingMathsCurrent.value = savedSubjects?.Mathematics?.currentMark ?? fallback.currentMark ?? "";
+        els.onboardingMathsTarget.value = savedSubjects?.Mathematics?.targetMark ?? fallback.targetMark ?? "";
+        els.onboardingScienceCurrent.value = savedSubjects?.["Physical Sciences"]?.currentMark ?? "";
+        els.onboardingScienceTarget.value = savedSubjects?.["Physical Sciences"]?.targetMark ?? "";
+        els.onboardingCompletedPercent.value =
+          savedSubjects?.Mathematics?.completedPercent ??
+          savedSubjects?.["Physical Sciences"]?.completedPercent ??
+          fallback.completedPercent ??
+          "";
+      }
+
+      function completeStudentOnboarding(event) {
+        event.preventDefault();
+
+        const account = state.accounts.find(a => a.id === session?.accountId);
+        if (!account || account.role !== "student") {
+          logout();
+          return;
+        }
+
+        const mathsCurrent = Number(els.onboardingMathsCurrent.value);
+        const mathsTarget = Number(els.onboardingMathsTarget.value);
+        const scienceCurrent = Number(els.onboardingScienceCurrent.value);
+        const scienceTarget = Number(els.onboardingScienceTarget.value);
+        const completedPercent = Number(els.onboardingCompletedPercent.value);
+
+        const values = [mathsCurrent, mathsTarget, scienceCurrent, scienceTarget, completedPercent];
+        if (values.some(value => !Number.isFinite(value))) {
+          showOnboardingError("Please complete every mark and goal field.");
+          return;
+        }
+        if ([mathsCurrent, mathsTarget, scienceCurrent, scienceTarget].some(value => value < 0 || value > 100)) {
+          showOnboardingError("Marks and goals must be between 0% and 100%.");
+          return;
+        }
+        if (completedPercent < 0 || completedPercent > 99) {
+          showOnboardingError("Completed assessment must be between 0% and 99%.");
+          return;
+        }
+        if (mathsTarget < mathsCurrent || scienceTarget < scienceCurrent) {
+          showOnboardingError("Each goal should be equal to or higher than the current mark.");
+          return;
+        }
+
+        state.subjectGoals[account.name] = {
+          Mathematics: {
+            currentMark: mathsCurrent,
+            targetMark: mathsTarget,
+            completedPercent
+          },
+          "Physical Sciences": {
+            currentMark: scienceCurrent,
+            targetMark: scienceTarget,
+            completedPercent
+          }
+        };
+
+        state.goals[account.name] = {
+          currentMark: Math.round((mathsCurrent + scienceCurrent) / 2),
+          targetMark: Math.round((mathsTarget + scienceTarget) / 2),
+          completedPercent
+        };
+
+        account.onboardingComplete = true;
+        account.onboardingCompletedAt = new Date().toISOString();
+        saveState();
+
+        els.onboardingScreen.classList.add("hidden");
+        toast("Your starting marks and goals have been saved");
+        enterApp();
+      }
+
+      function showOnboardingError(message) {
+        els.onboardingError.textContent = message;
+        els.onboardingError.classList.remove("hidden");
+      }
+
       function logout() {
         localStorage.removeItem(SESSION_KEY);
         session = null;
         els.appShell.classList.add("hidden");
+        els.onboardingScreen.classList.add("hidden");
         els.loginScreen.classList.remove("hidden");
         document.querySelector(".sidebar").classList.remove("open");
         els.loginPassword.value = "";
@@ -1549,10 +1841,29 @@
 
       function migrateAccountData() {
         if (!Array.isArray(state.accounts)) state.accounts = structuredClone(defaultState.accounts);
+        if (!state.goals || typeof state.goals !== "object") state.goals = {};
+        if (!state.subjectGoals || typeof state.subjectGoals !== "object") state.subjectGoals = {};
+        if (!state.loginDates || typeof state.loginDates !== "object") state.loginDates = {};
+
         const knownEmails = new Set(state.accounts.map(a => normaliseEmail(a.email)));
         defaultState.accounts.forEach(account => {
           if (!knownEmails.has(normaliseEmail(account.email))) state.accounts.push(structuredClone(account));
         });
+
+        state.accounts.forEach(account => {
+          if (account.role === "tutor" && account.onboardingComplete !== true) {
+            account.onboardingComplete = true;
+            account.onboardingCompletedAt = account.onboardingCompletedAt || account.createdAt || new Date().toISOString();
+          }
+          if (account.role === "student" && typeof account.onboardingComplete !== "boolean") {
+            account.onboardingComplete = false;
+            account.onboardingCompletedAt = null;
+          }
+          if (account.role === "student") {
+            state.loginDates[account.name] = state.loginDates[account.name] || [];
+          }
+        });
+
         saveState();
       }
 
@@ -2009,7 +2320,9 @@
             <div><h1>Turn your target into a plan</h1><p>Use your current average and completed assessment weight to estimate what you need next.</p></div>
           </div>
 
-          <section class="card section-card">
+          ${subjectGoalSummaryHtml(name)}
+
+          <section class="card section-card" style="margin-top:18px">
             <div class="goal-panel">
               <form id="goal-form">
                 <div class="section-head">
@@ -2048,10 +2361,55 @@
             targetMark: clamp(Number(document.getElementById("target-mark").value), 0, 100),
             completedPercent: clamp(Number(document.getElementById("completed-mark").value), 0, 99)
           };
+          if (state.subjectGoals[name]) {
+            Object.values(state.subjectGoals[name]).forEach(subjectGoal => {
+              subjectGoal.completedPercent = state.goals[name].completedPercent;
+            });
+          }
           saveState();
           toast("Goal plan updated");
           renderProgress();
         });
+      }
+
+      function subjectGoalSummaryHtml(name) {
+        const goals = state.subjectGoals[name];
+        if (!goals) return "";
+
+        const subjectBlock = (subject, shortName, className) => {
+          const item = goals[subject];
+          if (!item) return "";
+          const gap = Math.max(0, item.targetMark - item.currentMark);
+          const required = calculateRequired(item.currentMark, item.targetMark, item.completedPercent);
+          return `<div class="mastery-card">
+            <div class="mastery-card-head">
+              <div>
+                <span class="subject-dot ${className}" style="margin-bottom:8px">${shortName}</span>
+                <h4>${escapeHtml(subject)}</h4>
+                <small>${item.completedPercent}% of assessment completed</small>
+              </div>
+              <span class="badge ${gap === 0 ? "green" : "blue"}">${gap} point gap</span>
+            </div>
+            <div class="mini-grid" style="margin-top:10px">
+              <div class="mini-stat"><small>Current mark</small><b>${item.currentMark}%</b></div>
+              <div class="mini-stat"><small>Goal</small><b>${item.targetMark}%</b></div>
+            </div>
+            <div class="row-meta" style="margin-top:10px">
+              <span>${required > 100 ? "Goal currently requires above 100%" : `Needed on remaining work: ${Math.max(0, required).toFixed(1)}%`}</span>
+            </div>
+          </div>`;
+        };
+
+        return `<section class="card section-card">
+          <div class="section-head">
+            <div><h3>Your subject goals</h3><p>These were captured during first-time setup.</p></div>
+            <span class="badge purple">Starting profile saved</span>
+          </div>
+          <div class="mastery-grid">
+            ${subjectBlock("Mathematics", "M", "maths")}
+            ${subjectBlock("Physical Sciences", "PS", "science")}
+          </div>
+        </section>`;
       }
 
       function goalResultHtml(goal, required) {
@@ -2839,6 +3197,705 @@
       function startOfDay(d) {
         return new Date(d.getFullYear(), d.getMonth(), d.getDate());
       }
+
+      /* ================================================================
+         Thrive11 v1.2 combined update
+         - First-login marks and goals remains enforced
+         - Tutors manage their own student list
+         - Assignments and paper resources are targeted to selected students
+         - Student profile pages show marks, goals, views and completion
+         - Word, PowerPoint, Excel, text, image, video and PDF downloads
+         ================================================================ */
+
+      function handleSignup(e) {
+        e.preventDefault();
+        clearAuthErrors();
+
+        const name = els.signupName.value.trim().replace(/\s+/g, " ");
+        const email = normaliseEmail(els.signupEmail.value);
+        const password = els.signupPassword.value;
+        const confirmPassword = els.signupConfirmPassword.value;
+
+        if (name.length < 2) {
+          showAuthError(els.signupError, "Please enter your full name.");
+          return;
+        }
+        if (!email.includes("@")) {
+          showAuthError(els.signupError, "Please enter a valid email address.");
+          return;
+        }
+        if (state.accounts.some(a => normaliseEmail(a.email) === email)) {
+          showAuthError(els.signupError, "An account with this email already exists. Sign in instead.");
+          return;
+        }
+        if (password.length < 6) {
+          showAuthError(els.signupError, "Your password must contain at least 6 characters.");
+          return;
+        }
+        if (password !== confirmPassword) {
+          showAuthError(els.signupError, "The two passwords do not match.");
+          return;
+        }
+
+        const account = {
+          id: uid("account"),
+          name,
+          email,
+          passwordHash: hashPassword(email, password),
+          role: selectedRole,
+          organisation: els.signupOrganisation.value.trim(),
+          onboardingComplete: selectedRole !== "student",
+          onboardingCompletedAt: selectedRole !== "student" ? new Date().toISOString() : null,
+          createdAt: new Date().toISOString(),
+          lastLoginAt: new Date().toISOString()
+        };
+
+        state.accounts.push(account);
+        if (account.role === "student") {
+          state.loginDates[name] = state.loginDates[name] || [];
+          state.tutorStudents
+            .filter(link => normaliseEmail(link.studentEmail) === email)
+            .forEach(link => {
+              link.studentAccountId = account.id;
+              link.studentName = account.name;
+              link.status = "active";
+            });
+          updateLoginStreak(name);
+        }
+        saveState();
+
+        session = sessionFromAccount(account);
+        localStorage.setItem(SESSION_KEY, JSON.stringify(session));
+        els.signupForm.reset();
+        selectedRole = "student";
+        enterApp();
+        toast(`${account.role === "student" ? "Student" : "Tutor"} account created successfully`);
+      }
+
+      function migrateAccountData() {
+        if (!Array.isArray(state.accounts)) state.accounts = structuredClone(defaultState.accounts);
+        if (!state.goals || typeof state.goals !== "object") state.goals = {};
+        if (!state.subjectGoals || typeof state.subjectGoals !== "object") state.subjectGoals = {};
+        if (!state.loginDates || typeof state.loginDates !== "object") state.loginDates = {};
+        if (!Array.isArray(state.tutorStudents)) state.tutorStudents = [];
+        if (!Array.isArray(state.activityLog)) state.activityLog = [];
+        if (!Array.isArray(state.assignments)) state.assignments = [];
+        if (!Array.isArray(state.submissions)) state.submissions = [];
+        if (!Array.isArray(state.tutorMarks)) state.tutorMarks = [];
+        if (!Array.isArray(state.quizAttempts)) state.quizAttempts = [];
+        if (!Array.isArray(state.pastPapers)) state.pastPapers = [];
+
+        const knownEmails = new Set(state.accounts.map(a => normaliseEmail(a.email)));
+        defaultState.accounts.forEach(account => {
+          if (!knownEmails.has(normaliseEmail(account.email))) state.accounts.push(structuredClone(account));
+        });
+
+        state.accounts.forEach(account => {
+          account.email = normaliseEmail(account.email);
+          if (account.role === "tutor" && account.onboardingComplete !== true) {
+            account.onboardingComplete = true;
+            account.onboardingCompletedAt = account.onboardingCompletedAt || account.createdAt || new Date().toISOString();
+          }
+          if (account.role === "student" && typeof account.onboardingComplete !== "boolean") {
+            account.onboardingComplete = false;
+            account.onboardingCompletedAt = null;
+          }
+          if (account.role === "student") state.loginDates[account.name] = state.loginDates[account.name] || [];
+        });
+
+        const demoTutor = state.accounts.find(a => a.role === "tutor") || state.accounts[0];
+        const demoStudent = state.accounts.find(a => a.role === "student");
+        if (demoTutor && demoStudent && !state.tutorStudents.some(link =>
+          normaliseEmail(link.tutorEmail) === normaliseEmail(demoTutor.email) &&
+          normaliseEmail(link.studentEmail) === normaliseEmail(demoStudent.email))) {
+          state.tutorStudents.push({
+            id: "link-demo-student",
+            tutorEmail: normaliseEmail(demoTutor.email),
+            tutorAccountId: demoTutor.id,
+            studentEmail: normaliseEmail(demoStudent.email),
+            studentAccountId: demoStudent.id,
+            studentName: demoStudent.name,
+            status: "active",
+            addedAt: daysAgoISO(30)
+          });
+        }
+
+        state.tutorStudents.forEach(link => {
+          link.tutorEmail = normaliseEmail(link.tutorEmail);
+          link.studentEmail = normaliseEmail(link.studentEmail);
+          const student = accountByEmail(link.studentEmail);
+          const tutor = accountByEmail(link.tutorEmail);
+          if (student) {
+            link.studentAccountId = student.id;
+            link.studentName = student.name;
+            link.status = "active";
+          } else {
+            link.status = link.status || "pending";
+          }
+          if (tutor) link.tutorAccountId = tutor.id;
+        });
+
+        state.assignments.forEach(a => {
+          a.tutorEmail = normaliseEmail(a.tutorEmail || demoTutor?.email || "");
+          if (!Array.isArray(a.assignedStudentEmails)) {
+            a.assignedStudentEmails = demoStudent ? [normaliseEmail(demoStudent.email)] : [];
+          }
+          a.assignedStudentEmails = [...new Set(a.assignedStudentEmails.map(normaliseEmail).filter(Boolean))];
+        });
+
+        state.pastPapers.forEach(p => {
+          p.tutorEmail = normaliseEmail(p.tutorEmail || demoTutor?.email || "");
+          if (!Array.isArray(p.assignedStudentEmails)) {
+            p.assignedStudentEmails = demoStudent ? [normaliseEmail(demoStudent.email)] : [];
+          }
+          p.assignedStudentEmails = [...new Set(p.assignedStudentEmails.map(normaliseEmail).filter(Boolean))];
+        });
+
+        state.submissions.forEach(s => {
+          const assignment = state.assignments.find(a => a.id === s.assignmentId);
+          const student = accountByName(s.studentName);
+          s.studentEmail = normaliseEmail(s.studentEmail || student?.email || "");
+          s.tutorEmail = normaliseEmail(s.tutorEmail || assignment?.tutorEmail || demoTutor?.email || "");
+        });
+
+        state.tutorMarks.forEach(m => {
+          const student = accountByName(m.studentName);
+          m.studentEmail = normaliseEmail(m.studentEmail || student?.email || "");
+          m.tutorEmail = normaliseEmail(m.tutorEmail || demoTutor?.email || "");
+        });
+
+        state.quizAttempts.forEach(q => {
+          const student = accountByName(q.studentName);
+          q.studentEmail = normaliseEmail(q.studentEmail || student?.email || "");
+        });
+
+        saveState();
+      }
+
+      function accountByEmail(email) {
+        const target = normaliseEmail(email);
+        return state.accounts.find(account => normaliseEmail(account.email) === target);
+      }
+
+      function accountByName(name) {
+        return state.accounts.find(account => account.name === name);
+      }
+
+      function studentNameForEmail(email) {
+        const account = accountByEmail(email);
+        const link = state.tutorStudents.find(item => normaliseEmail(item.studentEmail) === normaliseEmail(email));
+        return account?.name || link?.studentName || email;
+      }
+
+      function tutorStudentLinks(tutorEmail = session?.email) {
+        return state.tutorStudents
+          .filter(link => normaliseEmail(link.tutorEmail) === normaliseEmail(tutorEmail))
+          .sort((a, b) => String(a.studentName || a.studentEmail).localeCompare(String(b.studentName || b.studentEmail)));
+      }
+
+      function tutorStudentEmails(tutorEmail = session?.email) {
+        return tutorStudentLinks(tutorEmail).map(link => normaliseEmail(link.studentEmail));
+      }
+
+      function assignmentIsForStudent(assignment, studentEmail) {
+        return Array.isArray(assignment.assignedStudentEmails) &&
+          assignment.assignedStudentEmails.map(normaliseEmail).includes(normaliseEmail(studentEmail));
+      }
+
+      function visibleAssignmentsForStudent(studentEmail = session?.email) {
+        return state.assignments.filter(a => assignmentIsForStudent(a, studentEmail));
+      }
+
+      function tutorAssignments(tutorEmail = session?.email) {
+        return state.assignments.filter(a => normaliseEmail(a.tutorEmail) === normaliseEmail(tutorEmail));
+      }
+
+      function paperIsForStudent(paper, studentEmail) {
+        return Array.isArray(paper.assignedStudentEmails) &&
+          paper.assignedStudentEmails.map(normaliseEmail).includes(normaliseEmail(studentEmail));
+      }
+
+      function visiblePapersForStudent(studentEmail = session?.email) {
+        return state.pastPapers.filter(p => paperIsForStudent(p, studentEmail));
+      }
+
+      function tutorPapers(tutorEmail = session?.email) {
+        return state.pastPapers.filter(p => normaliseEmail(p.tutorEmail) === normaliseEmail(tutorEmail));
+      }
+
+      function submissionStudentEmail(submission) {
+        return normaliseEmail(submission.studentEmail || accountByName(submission.studentName)?.email || "");
+      }
+
+      function tutorSubmissions(tutorEmail = session?.email) {
+        return state.submissions.filter(s => {
+          const assignment = state.assignments.find(a => a.id === s.assignmentId);
+          return normaliseEmail(s.tutorEmail || assignment?.tutorEmail) === normaliseEmail(tutorEmail);
+        });
+      }
+
+      function studentMarksByEmail(email, tutorEmail = null) {
+        const student = accountByEmail(email);
+        return state.tutorMarks.filter(mark => {
+          const sameStudent = normaliseEmail(mark.studentEmail) === normaliseEmail(email) || (!mark.studentEmail && mark.studentName === student?.name);
+          const sameTutor = !tutorEmail || normaliseEmail(mark.tutorEmail) === normaliseEmail(tutorEmail);
+          return sameStudent && sameTutor;
+        });
+      }
+
+      function markActivity(type, details = {}) {
+        if (!session || session.role !== "student") return;
+        const duplicateWindow = 30000;
+        const now = Date.now();
+        const exists = state.activityLog.some(item =>
+          item.type === type &&
+          normaliseEmail(item.studentEmail) === normaliseEmail(session.email) &&
+          item.assignmentId === (details.assignmentId || null) &&
+          item.paperId === (details.paperId || null) &&
+          now - new Date(item.createdAt).getTime() < duplicateWindow);
+        if (exists) return;
+        state.activityLog.push({
+          id: uid("activity"),
+          type,
+          studentEmail: normaliseEmail(session.email),
+          studentName: session.name,
+          assignmentId: details.assignmentId || null,
+          paperId: details.paperId || null,
+          fileName: details.fileName || "",
+          createdAt: new Date().toISOString()
+        });
+        saveState();
+      }
+
+      function activityForStudent(email) {
+        return state.activityLog
+          .filter(item => normaliseEmail(item.studentEmail) === normaliseEmail(email))
+          .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+      }
+
+      function studentSelectorHtml(links, inputName, selected = []) {
+        if (!links.length) {
+          return `<div class="warning-strip">Add at least one student before publishing work.</div>`;
+        }
+        const chosen = new Set(selected.map(normaliseEmail));
+        return `<div class="student-check-grid">${links.map(link => {
+          const email = normaliseEmail(link.studentEmail);
+          return `<label class="student-check">
+            <input type="checkbox" name="${escapeAttr(inputName)}" value="${escapeAttr(email)}" ${chosen.has(email) ? "checked" : ""} />
+            <span><b>${escapeHtml(link.studentName || email)}</b><small>${escapeHtml(email)} • ${link.status === "active" ? "Account linked" : "Invite pending"}</small></span>
+          </label>`;
+        }).join("")}</div>`;
+      }
+
+      function checkedStudentEmails(inputName) {
+        return [...document.querySelectorAll(`input[name="${inputName}"]:checked`)].map(input => normaliseEmail(input.value));
+      }
+
+      function renderNav() {
+        const studentNav = [
+          ["dashboard", "⌂", "Dashboard"],
+          ["work", "▣", "My work"],
+          ["quizzes", "✓", "Topic quizzes"],
+          ["progress", "↗", "My progress"],
+          ["papers", "▤", "Resources & memos"]
+        ];
+        const tutorNav = [
+          ["dashboard", "⌂", "Dashboard"],
+          ["students", "♙", "My students"],
+          ["upload", "＋", "Upload work"],
+          ["grading", "✓", "Grade submissions"],
+          ["marks", "▥", "Upload marks"],
+          ["papers", "▤", "Resources & memos"],
+          ["insights", "◌", "Student insights"]
+        ];
+        const items = session.role === "student" ? studentNav : tutorNav;
+        els.sideNav.innerHTML = `<div class="nav-label">${session.role === "student" ? "LEARNING" : "TUTOR TOOLS"}</div>` +
+          items.map(([id, icon, label]) => `
+            <button class="nav-item ${currentView === id ? "active" : ""}" data-view="${id}" type="button">
+              <span>${icon}</span><span>${label}</span>
+            </button>`).join("");
+
+        els.sideNav.querySelectorAll("[data-view]").forEach(btn => {
+          btn.addEventListener("click", () => {
+            currentView = btn.dataset.view;
+            renderNav();
+            renderCurrentView();
+            document.querySelector(".sidebar").classList.remove("open");
+          });
+        });
+      }
+
+      function renderCurrentView() {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        if (session.role === "student") {
+          const views = {
+            dashboard: renderStudentDashboard,
+            work: renderStudentWork,
+            quizzes: renderQuizTopics,
+            progress: renderProgress,
+            papers: renderStudentPapers
+          };
+          (views[currentView] || renderStudentDashboard)();
+        } else {
+          const views = {
+            dashboard: renderTutorDashboard,
+            students: renderTutorStudents,
+            "student-profile": renderTutorStudentProfile,
+            upload: renderUploadWork,
+            grading: renderGrading,
+            marks: renderMarks,
+            papers: renderTutorPapers,
+            insights: renderInsights
+          };
+          (views[currentView] || renderTutorDashboard)();
+        }
+      }
+
+      function renderStudentDashboard() {
+        setPage("OVERVIEW", "Student dashboard");
+        const name = session.name;
+        const assignments = visibleAssignmentsForStudent(session.email);
+        const mastery = getStudentMastery(name);
+        const overall = average(Object.values(mastery).map(x => x.score));
+        const pending = assignments.filter(a => !submissionFor(a.id, name)).length;
+        const goal = state.goals[name] || { currentMark: 0, targetMark: 0, completedPercent: 0 };
+        const gap = Math.max(0, goal.targetMark - goal.currentMark);
+        const upcoming = [...assignments].sort((a,b) => new Date(a.dueDate) - new Date(b.dueDate)).slice(0,4);
+        const feedback = state.submissions
+          .filter(s => submissionStudentEmail(s) === normaliseEmail(session.email) && s.status === "graded")
+          .sort((a,b) => new Date(b.submittedAt) - new Date(a.submittedAt))
+          .slice(0,3);
+
+        els.mainContent.innerHTML = `
+          <div class="welcome-row">
+            <div><h1>Good ${dayPart()}, ${escapeHtml(firstName(name))} 👋</h1><p>Your dashboard only shows work assigned directly to you.</p></div>
+            <span class="badge green">● Personal learning space</span>
+          </div>
+          <div class="grid cols-4">
+            ${statCard("🔥", `${getStreak(name)} days`, "Current login streak", "orange")}
+            ${statCard("◎", `${Math.round(overall || 0)}%`, "Overall topic mastery", "green")}
+            ${statCard("▣", pending, "Assignments to complete", "blue")}
+            ${statCard("↗", `${gap} pts`, "Gap to target mark", "purple")}
+          </div>
+          <div class="grid main-grid" style="margin-top:18px">
+            <div class="grid">
+              <div class="hero-panel">
+                <span class="eyebrow light">YOUR NEXT STEP</span>
+                <h2>${pending ? "Complete one of your assigned tasks." : "You are caught up — try a short quiz."}</h2>
+                <p>${pending ? "Open the nearest due task, download its resource if needed, and submit your working." : "A four-question topic quiz is a quick way to strengthen your mastery score."}</p>
+                <button class="btn" style="background:white;color:#3730a3;font-weight:700" data-go="${pending ? "work" : "quizzes"}">${pending ? "Open my work" : "Choose a quiz"} →</button>
+              </div>
+              <section class="card section-card">
+                <div class="section-head"><div><h3>Assigned to you</h3><p>Only work selected for your account</p></div><button class="link-btn" data-go="work">View all</button></div>
+                <div class="assignment-list">${upcoming.length ? upcoming.map(a => assignmentRow(a, name, true)).join("") : emptyMini("Your tutor has not assigned new work to you.")}</div>
+              </section>
+              <section class="card section-card">
+                <div class="section-head"><div><h3>Recent tutor feedback</h3><p>Your latest graded submissions</p></div></div>
+                <div class="feedback-list">${feedback.length ? feedback.map(s => {
+                  const a = state.assignments.find(x => x.id === s.assignmentId);
+                  return `<div class="feedback-row"><span class="subject-dot ${a?.subject === "Mathematics" ? "maths" : "science"}">${a?.subject === "Mathematics" ? "M" : "PS"}</span><div><div class="row-title">${escapeHtml(a?.title || "Assignment")}</div><div class="row-meta"><span>${escapeHtml(s.feedback || "No written feedback")}</span></div></div><span class="badge green">${s.score}/${s.maxScore}</span></div>`;
+                }).join("") : emptyMini("Tutor feedback will appear here after grading.")}</div>
+              </section>
+            </div>
+            <div class="grid">
+              <section class="card section-card"><div class="section-head"><div><h3>Topic mastery</h3><p>Quiz + tutor-mark evidence</p></div><button class="link-btn" data-go="progress">Details</button></div><div class="mastery-list">${Object.entries(mastery).sort((a,b) => b[1].score-a[1].score).slice(0,6).map(([topic,data]) => masteryRow(topic,data.score)).join("") || emptyMini("Complete a quiz to build mastery.")}</div></section>
+              <div class="quote-box"><b>Download resources</b>Word documents, PowerPoint slides, PDFs, spreadsheets and images can be saved from your assignment or resource library.</div>
+            </div>
+          </div>`;
+        bindGoButtons();
+        bindAssignmentButtons();
+      }
+
+      function renderStudentWork() {
+        setPage("LEARNING", "My work");
+        const name = session.name;
+        const assigned = visibleAssignmentsForStudent(session.email);
+        els.mainContent.innerHTML = `
+          <div class="welcome-row"><div><h1>Your assigned lessons and tasks</h1><p>Download tutor resources, complete the task and upload your answer.</p></div><span class="badge blue">${assigned.length} assigned</span></div>
+          <div class="filter-bar"><input id="work-search" placeholder="Search assignments..." /><select id="work-subject"><option value="all">All subjects</option><option>Mathematics</option><option>Physical Sciences</option></select><select id="work-status"><option value="all">All statuses</option><option value="pending">To do</option><option value="submitted">Submitted</option><option value="graded">Graded</option></select></div>
+          <section class="card section-card"><div id="work-list" class="assignment-list"></div></section>`;
+        const refresh = () => {
+          const search = document.getElementById("work-search").value.toLowerCase();
+          const subject = document.getElementById("work-subject").value;
+          const status = document.getElementById("work-status").value;
+          const filtered = assigned.filter(a => {
+            const sub = submissionFor(a.id, name);
+            const s = sub ? sub.status : "pending";
+            return (subject === "all" || a.subject === subject) && (status === "all" || s === status) && `${a.title} ${a.topic} ${a.instructions}`.toLowerCase().includes(search);
+          });
+          document.getElementById("work-list").innerHTML = filtered.length ? filtered.map(a => assignmentRow(a,name,false)).join("") : emptyMini("No assigned work matches these filters.");
+          bindAssignmentButtons();
+        };
+        ["work-search","work-subject","work-status"].forEach(id => document.getElementById(id).addEventListener("input", refresh));
+        refresh();
+      }
+
+      async function openAssignment(id) {
+        const a = visibleAssignmentsForStudent(session.email).find(x => x.id === id);
+        if (!a) return toast("This assignment is not assigned to your account");
+        markActivity("assignment_viewed", { assignmentId: a.id });
+        const sub = submissionFor(id, session.name);
+        const fileLabel = a.attachmentName || "Tutor resource";
+        const attachmentButton = a.attachmentKey
+          ? `<button class="btn soft small-btn" id="download-assignment-file">⬇ Download ${escapeHtml(fileLabel)}</button>`
+          : a.attachmentName ? `<span class="badge grey">Demo file: ${escapeHtml(a.attachmentName)}</span>` : "";
+
+        openModal(`
+          <div class="modal-head"><div><span class="eyebrow">${escapeHtml(a.subject)}</span><h3>${escapeHtml(a.title)}</h3></div><button class="close-btn" data-close>×</button></div>
+          <div class="modal-body">
+            <div class="row-meta" style="margin-bottom:16px"><span>${escapeHtml(a.topic)}</span><span>•</span><span>${escapeHtml(a.type)}</span><span>•</span><span>Due ${formatDate(a.dueDate)}</span></div>
+            <div class="info-strip">${escapeHtml(a.instructions)}</div>
+            ${(attachmentButton || a.videoUrl) ? `<div class="action-row" style="margin:16px 0;justify-content:flex-start;flex-wrap:wrap">${attachmentButton}${a.videoUrl ? `<a class="btn ghost small-btn" target="_blank" rel="noopener" href="${safeUrl(a.videoUrl)}">Open video lesson ↗</a>` : ""}</div>` : ""}
+            ${sub?.status === "graded" ? `<div class="quote-box" style="margin-top:16px"><b>Marked ${sub.score}/${sub.maxScore}</b>${escapeHtml(sub.feedback || "No written feedback")}</div>` : ""}
+            <form id="student-submit-form" style="margin-top:20px">
+              <label>Your written answer or note<textarea id="student-answer-text" placeholder="Type a short answer, explanation or note to your tutor...">${escapeHtml(sub?.answerText || "")}</textarea></label>
+              <label class="dropzone"><b>Upload your working or answer</b><span>Image, PDF, Word document or PowerPoint</span><input id="student-answer-file" type="file" accept="image/*,.pdf,.doc,.docx,.ppt,.pptx" /></label>
+              ${sub?.answerFileName ? `<div class="file-preview" style="margin:12px 0"><span>📎 ${escapeHtml(sub.answerFileName)}</span><span class="badge blue">Already uploaded</span></div>` : ""}
+              <button class="btn primary full" type="submit">${sub ? "Update submission" : "Submit for grading"}</button>
+            </form>
+          </div>`);
+        document.querySelectorAll("[data-close]").forEach(b => b.addEventListener("click", closeModal));
+        if (a.attachmentKey && document.getElementById("download-assignment-file")) {
+          document.getElementById("download-assignment-file").addEventListener("click", async () => {
+            await downloadStoredFile(a.attachmentKey, a.attachmentName || "Thrive11-resource");
+            markActivity("assignment_resource_downloaded", { assignmentId: a.id, fileName: a.attachmentName });
+          });
+        }
+        document.getElementById("student-submit-form").addEventListener("submit", async e => {
+          e.preventDefault();
+          const file = document.getElementById("student-answer-file").files[0];
+          let fileKey = sub?.answerFileKey || null;
+          let fileName = sub?.answerFileName || "";
+          if (file) {
+            fileKey = `answer-${Date.now()}`;
+            await saveFile(fileKey, file);
+            fileName = file.name;
+          }
+          const payload = {
+            id: sub?.id || uid("s"), assignmentId: a.id, studentName: session.name,
+            studentEmail: normaliseEmail(session.email), tutorEmail: normaliseEmail(a.tutorEmail),
+            answerText: document.getElementById("student-answer-text").value.trim(),
+            answerFileName: fileName, answerFileKey: fileKey, submittedAt: new Date().toISOString(),
+            status: "submitted", score: null, maxScore: null, feedback: ""
+          };
+          if (sub) Object.assign(sub,payload); else state.submissions.push(payload);
+          markActivity("assignment_submitted", { assignmentId: a.id, fileName });
+          saveState(); closeModal(); toast("Answer submitted to your tutor"); renderCurrentView();
+        });
+      }
+
+      function finishQuiz() {
+        const questions = quizBank[activeQuiz];
+        const score = questions.reduce((sum,q,i) => sum + (quizAnswers[i] === q.a ? 1 : 0),0);
+        state.quizAttempts.push({ id: uid("q"), studentName: session.name, studentEmail: normaliseEmail(session.email), topic: activeQuiz, subject: subjectForTopic(activeQuiz), score, total: questions.length, date: new Date().toISOString() });
+        markActivity("quiz_completed", { fileName: `${activeQuiz}: ${score}/${questions.length}` });
+        saveState();
+        const pct = Math.round(score/questions.length*100);
+        setPage("QUIZ RESULT",activeQuiz);
+        els.mainContent.innerHTML = `<div class="quiz-shell"><section class="card section-card" style="text-align:center"><span class="badge purple">COMPLETED</span><h1 style="margin:12px 0 8px">${pct>=75?"Strong work!":pct>=50?"Good start — review the explanations.":"This topic needs another focused round."}</h1><p style="color:var(--text-muted);margin:0">You scored ${score} out of ${questions.length}.</p><div class="result-circle" style="--pct:${pct}%"><strong>${pct}%</strong></div><div style="text-align:left;display:grid;gap:10px;margin:22px 0">${questions.map((q,i)=>`<div class="${quizAnswers[i]===q.a?"info-strip":"warning-strip"}"><b>${quizAnswers[i]===q.a?"✓ Correct":"✕ Review"}:</b> ${escapeHtml(q.q)}<br><span>${escapeHtml(q.e)}</span></div>`).join("")}</div><div class="action-row" style="justify-content:center"><button class="btn ghost" id="back-quizzes">Choose another topic</button><button class="btn primary" id="retry-quiz">Try this quiz again</button></div></section></div>`;
+        document.getElementById("back-quizzes").addEventListener("click",()=>{currentView="quizzes";renderNav();renderQuizTopics();});
+        document.getElementById("retry-quiz").addEventListener("click",()=>startQuiz(activeQuiz));
+      }
+
+      function renderStudentPapers() {
+        setPage("RESOURCES", "Resources & memos");
+        const available = visiblePapersForStudent(session.email);
+        els.mainContent.innerHTML = `<div class="welcome-row"><div><h1>Your downloadable resources</h1><p>Download PDFs, Word documents, PowerPoint slides, spreadsheets, images and memos selected for you.</p></div><span class="badge purple">${available.length} resource sets</span></div><div class="filter-bar"><input id="paper-search" placeholder="Search resources..." /><select id="paper-subject"><option value="all">All subjects</option><option>Mathematics</option><option>Physical Sciences</option></select></div><section class="card section-card"><div id="student-paper-list" class="paper-list"></div></section>`;
+        const refresh = () => {
+          const q = document.getElementById("paper-search").value.toLowerCase();
+          const subject = document.getElementById("paper-subject").value;
+          const papers = available.filter(p => (subject === "all" || p.subject === subject) && `${p.title} ${p.year} ${p.term}`.toLowerCase().includes(q));
+          document.getElementById("student-paper-list").innerHTML = papers.length ? papers.map(p => paperRow(p,false)).join("") : emptyMini("No assigned resources match your search.");
+          bindPaperButtons();
+        };
+        document.getElementById("paper-search").addEventListener("input",refresh);
+        document.getElementById("paper-subject").addEventListener("change",refresh);
+        refresh();
+      }
+
+      function renderTutorDashboard() {
+        setPage("OVERVIEW", "Tutor dashboard");
+        const links = tutorStudentLinks();
+        const emails = new Set(links.map(link => normaliseEmail(link.studentEmail)));
+        const submissions = tutorSubmissions();
+        const pending = submissions.filter(s => s.status === "submitted").length;
+        const ownAssignments = tutorAssignments();
+        const attempts = state.quizAttempts.filter(q => emails.has(normaliseEmail(q.studentEmail || accountByName(q.studentName)?.email)));
+        const avgQuiz = average(attempts.map(q => q.score/q.total*100));
+        const recentSubs = [...submissions].sort((a,b)=>new Date(b.submittedAt)-new Date(a.submittedAt)).slice(0,5);
+        els.mainContent.innerHTML = `
+          <div class="welcome-row"><div><h1>Welcome back, ${escapeHtml(firstName(session.name))}</h1><p>Your dashboard is limited to students you have added.</p></div><button class="btn primary" data-go="students">＋ Add or view students</button></div>
+          <div class="grid cols-4">${statCard("✓",pending,"Submissions to grade","orange")}${statCard("♙",links.length,"Students on your platform","blue")}${statCard("▣",ownAssignments.length,"Targeted assignments","purple")}${statCard("◎",`${Math.round(avgQuiz||0)}%`,"Your students' quiz average","green")}</div>
+          <div class="grid main-grid" style="margin-top:18px">
+            <div class="grid">
+              <section class="card section-card"><div class="section-head"><div><h3>Your students</h3><p>Open a student profile to see marks, goals and activity</p></div><button class="link-btn" data-go="students">Manage</button></div><div class="student-card-grid">${links.length ? links.map(studentDashboardCard).join("") : emptyMini("Add a student before uploading work.")}</div></section>
+              <section class="card section-card"><div class="section-head"><div><h3>Recent submissions</h3><p>Only submissions from your students</p></div><button class="link-btn" data-go="grading">Open grading</button></div><div class="submission-list">${recentSubs.length ? recentSubs.map(s=>submissionRow(s)).join("") : emptyMini("No submissions from your students yet.")}</div></section>
+            </div>
+            <div class="grid"><section class="card section-card"><div class="section-head"><div><h3>Quick actions</h3><p>Target the right learners</p></div></div><div class="quick-action-grid one-column-actions">${quickAction("＋","Upload targeted work","Select exactly which students receive it.","upload")}${quickAction("✓","Grade answers","Review work from your own students.","grading")}${quickAction("▥","Record a mark","Add evidence to a student profile.","marks")}</div></section><div class="info-strip"><b>Private tutor space:</b> New work and resources are only visible to the students you select.</div></div>
+          </div>`;
+        bindGoButtons();
+        bindStudentProfileLinks();
+        document.querySelectorAll(".grade-from-row").forEach(b=>b.addEventListener("click",()=>openGradeModal(b.dataset.id)));
+      }
+
+      function studentDashboardCard(link) {
+        const email = normaliseEmail(link.studentEmail);
+        const account = accountByEmail(email);
+        const name = account?.name || link.studentName || email;
+        const assigned = tutorAssignments().filter(a => assignmentIsForStudent(a,email));
+        const completed = state.submissions.filter(s => submissionStudentEmail(s) === email && assigned.some(a => a.id === s.assignmentId)).length;
+        return `<div class="student-person-card"><div class="student-person-head"><span class="avatar">${initials(name)}</span><div><b>${escapeHtml(name)}</b><small>${escapeHtml(email)}</small></div><span class="badge ${account?"green":"orange"}">${account?"Linked":"Pending"}</span></div><div class="student-mini-metrics"><span><b>${assigned.length}</b> assigned</span><span><b>${completed}</b> submitted</span></div><button class="btn soft full open-student-profile" data-email="${escapeAttr(email)}" type="button">View marks and activity →</button></div>`;
+      }
+
+      function bindStudentProfileLinks() {
+        document.querySelectorAll(".open-student-profile").forEach(btn => btn.addEventListener("click", () => {
+          window.thrive11SelectedStudentEmail = normaliseEmail(btn.dataset.email);
+          currentView = "student-profile";
+          renderNav();
+          renderTutorStudentProfile();
+        }));
+      }
+
+      function renderTutorStudents() {
+        setPage("STUDENTS", "My students");
+        const links = tutorStudentLinks();
+        els.mainContent.innerHTML = `<div class="welcome-row"><div><h1>Build your student group</h1><p>Add students by email. Once an account with that email exists on this installation, it becomes linked.</p></div><span class="badge blue">${links.length} students</span></div><div class="grid cols-2"><section class="card section-card"><div class="section-head"><div><h3>Add a student</h3><p>Use the same email the student uses to create their account.</p></div></div><form id="add-student-form"><label>Student full name<input id="new-student-name" required placeholder="e.g. Sibusiso Khoza" /></label><label>Student email<input id="new-student-email" type="email" required placeholder="student@example.com" /></label><button class="btn primary full" type="submit">Add student to my platform</button></form><div class="onboarding-note" style="margin-top:16px"><b>Important:</b> This version stores information locally. Students on another phone will need a shared online database before their accounts can sync with this tutor dashboard.</div></section><section class="card section-card"><div class="section-head"><div><h3>Your student list</h3><p>Open a profile or remove a student</p></div></div><div class="student-card-grid">${links.length ? links.map(link => `${studentDashboardCard(link)}<button class="btn danger small-btn remove-student" data-id="${escapeAttr(link.id)}" type="button">Remove from my platform</button>`).join("") : emptyMini("No students added yet.")}</div></section></div>`;
+        document.getElementById("add-student-form").addEventListener("submit", e => {
+          e.preventDefault();
+          const name = document.getElementById("new-student-name").value.trim().replace(/\s+/g," ");
+          const email = normaliseEmail(document.getElementById("new-student-email").value);
+          if (!name || !email.includes("@")) return toast("Enter a valid student name and email");
+          if (state.tutorStudents.some(link => normaliseEmail(link.tutorEmail) === normaliseEmail(session.email) && normaliseEmail(link.studentEmail) === email)) return toast("This student is already on your platform");
+          const account = accountByEmail(email);
+          state.tutorStudents.push({ id:uid("student-link"), tutorEmail:normaliseEmail(session.email), tutorAccountId:session.accountId, studentEmail:email, studentAccountId:account?.id||null, studentName:account?.name||name, status:account?"active":"pending", addedAt:new Date().toISOString() });
+          saveState(); toast(account?"Student account linked":"Student added — account link pending"); renderTutorStudents();
+        });
+        bindStudentProfileLinks();
+        document.querySelectorAll(".remove-student").forEach(btn => btn.addEventListener("click", () => {
+          const link = state.tutorStudents.find(item => item.id === btn.dataset.id);
+          if (!link) return;
+          if (!confirm(`Remove ${link.studentName || link.studentEmail} from your platform? Existing records will remain saved.`)) return;
+          state.tutorStudents = state.tutorStudents.filter(item => item.id !== btn.dataset.id);
+          saveState(); toast("Student removed from your platform"); renderTutorStudents();
+        }));
+      }
+
+      function renderTutorStudentProfile() {
+        const email = normaliseEmail(window.thrive11SelectedStudentEmail || tutorStudentLinks()[0]?.studentEmail || "");
+        const link = tutorStudentLinks().find(item => normaliseEmail(item.studentEmail) === email);
+        if (!link) { currentView="students"; renderNav(); return renderTutorStudents(); }
+        const account = accountByEmail(email);
+        const name = account?.name || link.studentName || email;
+        const assigned = tutorAssignments().filter(a => assignmentIsForStudent(a,email));
+        const submissions = tutorSubmissions().filter(s => submissionStudentEmail(s) === email);
+        const submittedIds = new Set(submissions.map(s=>s.assignmentId));
+        const views = new Set(activityForStudent(email).filter(a=>a.type==="assignment_viewed").map(a=>a.assignmentId));
+        const downloads = activityForStudent(email).filter(a=>a.type.includes("downloaded"));
+        const marks = studentMarksByEmail(email,session.email).sort((a,b)=>new Date(b.date)-new Date(a.date));
+        const attempts = state.quizAttempts.filter(q => normaliseEmail(q.studentEmail || accountByName(q.studentName)?.email) === email).sort((a,b)=>new Date(b.date)-new Date(a.date));
+        const goals = state.subjectGoals[name] || {};
+        const recentActivity = activityForStudent(email).slice(0,12);
+        setPage("STUDENT PROFILE", name);
+        els.mainContent.innerHTML = `<div class="welcome-row"><div><button class="link-btn" id="back-to-students">← Back to students</button><h1 style="margin-top:8px">${escapeHtml(name)}</h1><p>${escapeHtml(email)} • ${account?"Account linked":"Waiting for student account"}</p></div><span class="badge ${account?"green":"orange"}">${account?"Active":"Pending"}</span></div><div class="grid cols-4">${statCard("▣",assigned.length,"Assignments sent","blue")}${statCard("◉",views.size,"Assignments viewed","purple")}${statCard("✓",submittedIds.size,"Assignments submitted","green")}${statCard("⬇",downloads.length,"Resources downloaded","orange")}</div><div class="grid main-grid" style="margin-top:18px"><div class="grid"><section class="card section-card"><div class="section-head"><div><h3>Marks and goals</h3><p>Starting marks, targets and tutor evidence</p></div></div><div class="subject-goal-grid">${["Mathematics","Physical Sciences"].map(subject => { const g=goals[subject]; return `<div class="subject-goal-card"><span class="badge ${subject==="Mathematics"?"blue":"green"}">${subject}</span><div class="subject-goal-numbers"><div><small>Current</small><b>${g?.currentMark ?? "—"}%</b></div><div><small>Goal</small><b>${g?.targetMark ?? "—"}%</b></div></div></div>`; }).join("")}</div><div class="table-wrap" style="margin-top:18px"><table><thead><tr><th>Assessment</th><th>Topic</th><th>Date</th><th>Mark</th></tr></thead><tbody>${marks.length?marks.map(m=>`<tr><td>${escapeHtml(m.title)}</td><td>${escapeHtml(m.topic)}</td><td>${formatDate(m.date)}</td><td><span class="badge ${m.score/m.maxScore>=.7?"green":m.score/m.maxScore>=.5?"orange":"red"}">${Math.round(m.score/m.maxScore*100)}%</span></td></tr>`).join(""):`<tr><td colspan="4">No tutor marks recorded.</td></tr>`}</tbody></table></div></section><section class="card section-card"><div class="section-head"><div><h3>Assignment progress</h3><p>What was sent, viewed and completed</p></div></div><div class="assignment-list">${assigned.length?assigned.map(a=>{const sub=submissions.find(s=>s.assignmentId===a.id);const viewed=views.has(a.id);return `<div class="assignment-row"><span class="subject-dot ${a.subject==="Mathematics"?"maths":"science"}">${a.subject==="Mathematics"?"M":"PS"}</span><div><div class="row-title">${escapeHtml(a.title)}</div><div class="row-meta"><span>${viewed?"Viewed":"Not viewed"}</span><span>•</span><span>${sub?sub.status==="graded"?`Graded ${sub.score}/${sub.maxScore}`:"Submitted":"Not submitted"}</span></div></div><span class="badge ${sub?"green":viewed?"blue":"grey"}">${sub?"Completed":viewed?"Opened":"Not opened"}</span></div>`;}).join(""):emptyMini("No work assigned to this student.")}</div></section></div><div class="grid"><section class="card section-card"><div class="section-head"><div><h3>Quiz results</h3><p>Latest topic practice</p></div></div><div class="mastery-list">${attempts.length?attempts.slice(0,8).map(q=>masteryRow(q.topic,Math.round(q.score/q.total*100))).join(""):emptyMini("No quiz attempts recorded.")}</div></section><section class="card section-card"><div class="section-head"><div><h3>Recent activity</h3><p>Views, downloads and submissions</p></div></div><div class="activity-list">${recentActivity.length?recentActivity.map(activityRow).join(""):emptyMini("No activity has been recorded yet.")}</div></section></div></div>`;
+        document.getElementById("back-to-students").addEventListener("click",()=>{currentView="students";renderNav();renderTutorStudents();});
+      }
+
+      function activityRow(item) {
+        const labels = { assignment_viewed:"Opened assignment", assignment_resource_downloaded:"Downloaded assignment resource", paper_downloaded:"Downloaded resource or memo", assignment_submitted:"Submitted assignment", quiz_completed:"Completed quiz" };
+        const assignment = state.assignments.find(a=>a.id===item.assignmentId);
+        const paper = state.pastPapers.find(p=>p.id===item.paperId);
+        return `<div class="activity-row"><span class="activity-dot"></span><div><b>${escapeHtml(labels[item.type] || item.type.replaceAll("_"," "))}</b><small>${escapeHtml(assignment?.title || paper?.title || item.fileName || "Thrive11 activity")} • ${formatDateTime(item.createdAt)}</small></div></div>`;
+      }
+
+      function renderUploadWork() {
+        setPage("CONTENT", "Upload targeted work");
+        const links = tutorStudentLinks();
+        const own = tutorAssignments();
+        els.mainContent.innerHTML = `<div class="welcome-row"><div><h1>Create work for selected students</h1><p>Only checked students will see the task in their app.</p></div><button class="btn ghost" data-go="students">Manage students</button></div><div class="grid cols-2"><section class="card section-card"><form id="upload-work-form"><div class="form-grid"><label class="span-2">Task title<input id="task-title" required placeholder="e.g. Trigonometry revision questions" /></label><label>Subject<select id="task-subject"><option>Mathematics</option><option>Physical Sciences</option></select></label><label>Topic<select id="task-topic"></select></label><label>Type<select id="task-type"><option>Worksheet</option><option>Video lesson</option><option>Homework</option><option>Revision activity</option><option>Past-paper practice</option><option>Slides or notes</option></select></label><label>Due date<input id="task-due" type="date" required value="${futureDate(7)}" /></label><label class="span-2">Instructions<textarea id="task-instructions" required placeholder="Tell the learner exactly what to do and what working to show."></textarea></label><label class="span-2">Video link (optional)<input id="task-video" type="url" placeholder="https://..." /></label><label class="span-2 dropzone"><b>Attach a downloadable resource</b><span>PDF, Word, PowerPoint, Excel, text, image or video</span><input id="task-file" type="file" accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.txt,.csv,image/*,video/*" /></label><div class="span-2"><b class="form-section-label">Choose students</b>${studentSelectorHtml(links,"task-students")}</div></div><button class="btn primary full" type="submit" ${links.length?"":"disabled"}>Publish to selected students</button></form></section><section class="card section-card"><div class="section-head"><div><h3>Your recent assignments</h3><p>${own.length} targeted tasks</p></div></div><div class="assignment-list">${[...own].reverse().slice(0,8).map(a=>`<div class="assignment-row"><span class="subject-dot ${a.subject==="Mathematics"?"maths":"science"}">${a.subject==="Mathematics"?"M":"PS"}</span><div><div class="row-title">${escapeHtml(a.title)}</div><div class="row-meta"><span>${a.assignedStudentEmails.length} student${a.assignedStudentEmails.length===1?"":"s"}</span><span>•</span><span>Due ${formatDate(a.dueDate)}</span></div></div><button class="btn danger small-btn delete-assignment" data-id="${a.id}">Delete</button></div>`).join("")||emptyMini("No work uploaded yet.")}</div></section></div>`;
+        bindGoButtons();
+        const subjectSelect=document.getElementById("task-subject"),topicSelect=document.getElementById("task-topic");
+        const updateTopics=()=>{topicSelect.innerHTML=(subjectSelect.value==="Mathematics"?mathsTopics:scienceTopics).map(t=>`<option>${escapeHtml(t)}</option>`).join("");};
+        subjectSelect.addEventListener("change",updateTopics);updateTopics();
+        document.getElementById("upload-work-form").addEventListener("submit",async e=>{
+          e.preventDefault(); const recipients=checkedStudentEmails("task-students"); if(!recipients.length)return toast("Choose at least one student");
+          const file=document.getElementById("task-file").files[0]; let fileKey=null; if(file){fileKey=`task-${Date.now()}`;await saveFile(fileKey,file);}
+          state.assignments.push({id:uid("a"),tutorEmail:normaliseEmail(session.email),assignedStudentEmails:recipients,title:document.getElementById("task-title").value.trim(),subject:subjectSelect.value,topic:topicSelect.value,type:document.getElementById("task-type").value,dueDate:document.getElementById("task-due").value,instructions:document.getElementById("task-instructions").value.trim(),attachmentName:file?.name||"",attachmentKey:fileKey,videoUrl:document.getElementById("task-video").value.trim(),createdAt:new Date().toISOString()});
+          saveState();toast(`Task published to ${recipients.length} student${recipients.length===1?"":"s"}`);renderUploadWork();
+        });
+        document.querySelectorAll(".delete-assignment").forEach(btn=>btn.addEventListener("click",()=>{const hasSubs=state.submissions.some(s=>s.assignmentId===btn.dataset.id);if(hasSubs&&!confirm("This task has submissions. Delete the task and its submissions?"))return;state.assignments=state.assignments.filter(a=>a.id!==btn.dataset.id);state.submissions=state.submissions.filter(s=>s.assignmentId!==btn.dataset.id);saveState();toast("Task deleted");renderUploadWork();}));
+      }
+
+      function renderGrading() {
+        setPage("FEEDBACK", "Grade submissions");
+        const own = tutorSubmissions();
+        els.mainContent.innerHTML = `<div class="welcome-row"><div><h1>Review your students' answers</h1><p>Only submissions from students on your platform appear here.</p></div></div><div class="tabs"><button class="tab-btn active" data-grade-filter="submitted">Needs grading</button><button class="tab-btn" data-grade-filter="graded">Graded</button><button class="tab-btn" data-grade-filter="all">All</button></div><section class="card section-card"><div id="grading-list" class="submission-list"></div></section>`;
+        const renderList=filter=>{const subs=[...own].filter(s=>filter==="all"||s.status===filter).sort((a,b)=>new Date(b.submittedAt)-new Date(a.submittedAt));document.getElementById("grading-list").innerHTML=subs.length?subs.map(submissionRow).join(""):emptyMini(filter==="submitted"?"Nothing needs grading right now.":"No submissions in this category.");document.querySelectorAll(".grade-from-row").forEach(b=>b.addEventListener("click",()=>openGradeModal(b.dataset.id)));};
+        document.querySelectorAll("[data-grade-filter]").forEach(btn=>btn.addEventListener("click",()=>{document.querySelectorAll("[data-grade-filter]").forEach(b=>b.classList.remove("active"));btn.classList.add("active");renderList(btn.dataset.gradeFilter);}));renderList("submitted");
+      }
+
+      async function openGradeModal(submissionId) {
+        const s=tutorSubmissions().find(x=>x.id===submissionId); if(!s)return toast("This submission is not in your tutor space");
+        const a=state.assignments.find(x=>x.id===s.assignmentId); let fileHtml="";
+        if(s.answerFileKey) fileHtml=`<button class="btn soft" id="download-answer-file">⬇ Download ${escapeHtml(s.answerFileName||"student answer")}</button>`;
+        else if(s.answerFileName) fileHtml=`<div class="file-preview"><span>📎 ${escapeHtml(s.answerFileName)}</span><span class="badge grey">Demo attachment</span></div>`;
+        openModal(`<div class="modal-head"><div><span class="eyebrow">${escapeHtml(s.studentName)}</span><h3>${escapeHtml(a?.title||"Submission")}</h3></div><button class="close-btn" data-close>×</button></div><div class="modal-body"><div class="info-strip"><b>Task:</b> ${escapeHtml(a?.instructions||"")}</div><div style="margin:16px 0"><h4 style="margin:0 0 4px;font-size:0.95rem;font-weight:700">Student answer</h4><p style="color:var(--text-muted);font-size:0.9rem;margin:0 0 12px">${escapeHtml(s.answerText||"No typed note submitted.")}</p>${fileHtml}</div><form id="grade-form"><div class="form-grid"><label>Score<input id="grade-score" type="number" min="0" value="${s.score??0}" required /></label><label>Out of<input id="grade-max" type="number" min="1" value="${s.maxScore??10}" required /></label><label class="span-2">Feedback<textarea id="grade-feedback" required placeholder="What was done well, what needs correction, and what to do next.">${escapeHtml(s.feedback||"")}</textarea></label></div><button class="btn primary full" type="submit">Save grade and send feedback</button></form></div>`);
+        document.querySelectorAll("[data-close]").forEach(b=>b.addEventListener("click",closeModal));
+        if(s.answerFileKey&&document.getElementById("download-answer-file"))document.getElementById("download-answer-file").addEventListener("click",()=>downloadStoredFile(s.answerFileKey,s.answerFileName||"student-answer"));
+        document.getElementById("grade-form").addEventListener("submit",e=>{e.preventDefault();const score=Number(document.getElementById("grade-score").value),max=Number(document.getElementById("grade-max").value);if(score>max)return toast("Score cannot be higher than the maximum");s.score=score;s.maxScore=max;s.feedback=document.getElementById("grade-feedback").value.trim();s.status="graded";saveState();closeModal();toast("Grade and feedback saved");renderCurrentView();});
+      }
+
+      function renderMarks() {
+        setPage("ASSESSMENT", "Upload marks");
+        const links=tutorStudentLinks(),ownMarks=state.tutorMarks.filter(m=>normaliseEmail(m.tutorEmail)===normaliseEmail(session.email));
+        els.mainContent.innerHTML=`<div class="welcome-row"><div><h1>Record marks for your students</h1><p>Select a student already added to your platform.</p></div></div><div class="grid cols-2"><section class="card section-card"><form id="mark-form"><label>Student<select id="mark-student" required>${links.map(link=>`<option value="${escapeAttr(normaliseEmail(link.studentEmail))}">${escapeHtml(link.studentName||link.studentEmail)} — ${escapeHtml(link.studentEmail)}</option>`).join("")}</select></label><div class="form-grid"><label>Subject<select id="mark-subject"><option>Mathematics</option><option>Physical Sciences</option></select></label><label>Topic<select id="mark-topic"></select></label><label class="span-2">Assessment name<input id="mark-title" placeholder="e.g. March controlled test" required /></label><label>Score<input id="mark-score" type="number" min="0" required /></label><label>Out of<input id="mark-max" type="number" min="1" value="100" required /></label><label class="span-2">Date<input id="mark-date" type="date" value="${todayDate()}" required /></label></div><button class="btn primary full" type="submit" ${links.length?"":"disabled"}>Add mark to student profile</button></form>${links.length?"":`<div class="warning-strip">Add a student before recording marks.</div>`}</section><section class="card section-card"><div class="section-head"><div><h3>Your recent marks</h3><p>Newest first</p></div></div><div class="table-wrap"><table><thead><tr><th>Student</th><th>Assessment</th><th>Topic</th><th>Mark</th><th></th></tr></thead><tbody>${[...ownMarks].sort((a,b)=>new Date(b.date)-new Date(a.date)).map(m=>`<tr><td><strong>${escapeHtml(m.studentName)}</strong></td><td>${escapeHtml(m.title)}</td><td>${escapeHtml(m.topic)}</td><td><span class="badge ${m.score/m.maxScore>=.7?"green":m.score/m.maxScore>=.5?"orange":"red"}">${Math.round(m.score/m.maxScore*100)}%</span></td><td><button class="btn danger small-btn delete-mark" data-id="${m.id}">×</button></td></tr>`).join("")||`<tr><td colspan="5">No marks uploaded.</td></tr>`}</tbody></table></div></section></div>`;
+        const subject=document.getElementById("mark-subject"),topic=document.getElementById("mark-topic"),updateTopics=()=>{topic.innerHTML=(subject.value==="Mathematics"?mathsTopics:scienceTopics).map(t=>`<option>${escapeHtml(t)}</option>`).join("");};subject.addEventListener("change",updateTopics);updateTopics();
+        document.getElementById("mark-form").addEventListener("submit",e=>{e.preventDefault();const email=normaliseEmail(document.getElementById("mark-student").value),score=Number(document.getElementById("mark-score").value),max=Number(document.getElementById("mark-max").value);if(!email)return toast("Add a student first");if(score>max)return toast("Score cannot be higher than the maximum");state.tutorMarks.push({id:uid("m"),tutorEmail:normaliseEmail(session.email),studentEmail:email,studentName:studentNameForEmail(email),subject:subject.value,topic:topic.value,title:document.getElementById("mark-title").value.trim(),score,maxScore:max,date:document.getElementById("mark-date").value});saveState();toast("Mark added to the student profile");renderMarks();});
+        document.querySelectorAll(".delete-mark").forEach(b=>b.addEventListener("click",()=>{state.tutorMarks=state.tutorMarks.filter(m=>m.id!==b.dataset.id);saveState();renderMarks();}));
+      }
+
+      function renderTutorPapers() {
+        setPage("RESOURCES", "Resources & memos");
+        const links=tutorStudentLinks(),own=tutorPapers();
+        els.mainContent.innerHTML=`<div class="welcome-row"><div><h1>Share resources with selected students</h1><p>Upload PDFs, Word documents, PowerPoint slides, spreadsheets, images or memos.</p></div><button class="btn ghost" data-go="students">Manage students</button></div><div class="grid cols-2"><section class="card section-card"><form id="paper-form"><label>Resource title<input id="paper-title" required placeholder="e.g. Grade 11 Functions summary slides" /></label><div class="form-grid"><label>Subject<select id="paper-subject-upload"><option>Mathematics</option><option>Physical Sciences</option></select></label><label>Year<input id="paper-year" value="${new Date().getFullYear()}" required /></label><label class="span-2">Term / description<input id="paper-term" placeholder="e.g. Term 2 revision" required /></label><label class="dropzone"><b>Main document or slides</b><span>PDF, Word, PowerPoint, Excel or image</span><input id="paper-file" type="file" accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.txt,.csv,image/*" /></label><label class="dropzone"><b>Memo or supporting file</b><span>Any school document format</span><input id="memo-file" type="file" accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.txt,.csv,image/*" /></label><div class="span-2"><b class="form-section-label">Choose students</b>${studentSelectorHtml(links,"paper-students")}</div></div><button class="btn primary full" type="submit" ${links.length?"":"disabled"}>Share with selected students</button></form></section><section class="card section-card"><div class="section-head"><div><h3>Your resource library</h3><p>${own.length} targeted sets</p></div></div><div class="paper-list">${own.map(p=>paperRow(p,true)).join("")||emptyMini("No resources uploaded yet.")}</div></section></div>`;
+        bindGoButtons();
+        document.getElementById("paper-form").addEventListener("submit",async e=>{e.preventDefault();const recipients=checkedStudentEmails("paper-students");if(!recipients.length)return toast("Choose at least one student");const paperFile=document.getElementById("paper-file").files[0],memoFile=document.getElementById("memo-file").files[0];let paperKey=null,memoKey=null;if(paperFile){paperKey=`paper-${Date.now()}`;await saveFile(paperKey,paperFile);}if(memoFile){memoKey=`memo-${Date.now()+1}`;await saveFile(memoKey,memoFile);}state.pastPapers.push({id:uid("p"),tutorEmail:normaliseEmail(session.email),assignedStudentEmails:recipients,title:document.getElementById("paper-title").value.trim(),subject:document.getElementById("paper-subject-upload").value,year:document.getElementById("paper-year").value.trim(),term:document.getElementById("paper-term").value.trim(),paperName:paperFile?.name||"Main resource",paperKey,memoName:memoFile?.name||"Supporting file",memoKey});saveState();toast(`Resource shared with ${recipients.length} student${recipients.length===1?"":"s"}`);renderTutorPapers();});
+        bindPaperButtons();
+      }
+
+      function paperRow(p,tutorMode) {
+        return `<div class="paper-row"><span class="subject-dot ${p.subject==="Mathematics"?"maths":"science"}">${p.subject==="Mathematics"?"M":"PS"}</span><div><div class="row-title">${escapeHtml(p.title)}</div><div class="row-meta"><span>${escapeHtml(p.year)}</span><span>•</span><span>${escapeHtml(p.term)}</span><span>•</span><span>${tutorMode?`${p.assignedStudentEmails?.length||0} student${(p.assignedStudentEmails?.length||0)===1?"":"s"}`:escapeHtml(p.subject)}</span></div></div><div class="action-row"><button class="btn ghost small-btn open-paper" data-id="${p.id}" data-kind="paper">⬇ ${escapeHtml(p.paperName||"Resource")}</button><button class="btn soft small-btn open-paper" data-id="${p.id}" data-kind="memo">⬇ ${escapeHtml(p.memoName||"Memo")}</button>${tutorMode?`<button class="btn danger small-btn delete-paper" data-id="${p.id}">×</button>`:""}</div></div>`;
+      }
+
+      function bindPaperButtons() {
+        document.querySelectorAll(".open-paper").forEach(btn=>btn.addEventListener("click",async()=>{const collection=session.role==="student"?visiblePapersForStudent(session.email):tutorPapers();const p=collection.find(x=>x.id===btn.dataset.id);if(!p)return toast("This resource is not available to your account");const isPaper=btn.dataset.kind==="paper",key=isPaper?p.paperKey:p.memoKey,label=isPaper?p.paperName:p.memoName;if(key){await downloadStoredFile(key,label||"Thrive11-resource");if(session.role==="student")markActivity("paper_downloaded",{paperId:p.id,fileName:label});}else toast(`${label} is a demo placeholder. Upload a real file in Tutor view.`);}));
+        document.querySelectorAll(".delete-paper").forEach(btn=>btn.addEventListener("click",()=>{state.pastPapers=state.pastPapers.filter(p=>p.id!==btn.dataset.id);saveState();toast("Resource set removed");renderTutorPapers();}));
+      }
+
+      function renderInsights() {
+        setPage("ANALYTICS", "Student insights");
+        const links=tutorStudentLinks();
+        els.mainContent.innerHTML=`<div class="welcome-row"><div><h1>Compare your students' progress</h1><p>Every card links to the student's detailed profile.</p></div></div>${links.length?links.map(link=>{const email=normaliseEmail(link.studentEmail),name=studentNameForEmail(email),mastery=getStudentMastery(name),score=Math.round(average(Object.values(mastery).map(x=>x.score))||0),submissions=tutorSubmissions().filter(s=>submissionStudentEmail(s)===email).length,activity=activityForStudent(email).length;return `<section class="card section-card" style="margin-bottom:18px"><div class="section-head"><div><h3>${escapeHtml(name)}</h3><p>${escapeHtml(email)} • ${submissions} submissions • ${activity} recorded activities</p></div><button class="btn soft small-btn open-student-profile" data-email="${escapeAttr(email)}">Open full profile →</button></div><div class="mastery-grid">${Object.entries(mastery).sort((a,b)=>b[1].score-a[1].score).map(([topic,data])=>masteryCard(topic,data)).join("")||emptyMini("No mastery evidence yet.")}</div><div class="info-strip" style="margin-top:16px"><b>Overall mastery:</b> ${score}%</div></section>`;}).join(""):`<div class="empty-state"><h3>No students added yet</h3><p>Add students to your dashboard before viewing insights.</p><button class="btn primary" data-go="students">Add a student</button></div>`}`;
+        bindStudentProfileLinks();bindGoButtons();
+      }
+
+      async function downloadStoredFile(key,fileName) {
+        const file=await getFile(key);if(!file)return toast("The stored file could not be found");
+        const safeName=(fileName||file.name||"Thrive11-download").replace(/[\\/:*?"<>|]/g,"-");
+        if(window.AndroidBridge&&typeof window.AndroidBridge.saveBase64File==="function"){
+          if(file.size>25*1024*1024){toast("This file is too large for the in-app saver. Try a smaller file.");return;}
+          const reader=new FileReader();
+          reader.onload=()=>{const data=String(reader.result||"");const base64=data.includes(",")?data.split(",")[1]:data;window.AndroidBridge.saveBase64File(base64,safeName,file.type||"application/octet-stream");toast("Choose where to save the file");};
+          reader.onerror=()=>toast("The file could not be prepared for download");
+          reader.readAsDataURL(file);
+          return;
+        }
+        const url=URL.createObjectURL(file);const anchor=document.createElement("a");anchor.href=url;anchor.download=safeName;anchor.style.display="none";document.body.appendChild(anchor);anchor.click();anchor.remove();setTimeout(()=>URL.revokeObjectURL(url),60000);toast("Download started");
+      }
+
+      async function openStoredFile(key) {
+        return downloadStoredFile(key,"Thrive11-file");
+      }
+
     })();
   </script>
 </body>
